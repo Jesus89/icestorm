@@ -1,3 +1,22 @@
+#Debian packaging
+
+This is a test debian packaging repository for Icestorm Project.
+
+You can find packages here: https://launchpad.net/~jesus-arroyo/+archive/ubuntu/icestorm
+
+###Instructions
+
+```bash
+git clone icestorm.git icestorm
+tar -czvf icestorm_0.0.0.1.orig.tar.gz icestorm
+cd icestorm
+git checkout debian
+debuild -S -sa
+dput ppa:jesus-arroyo/icestorm ../icestorm_0.0.0.1-1~trusty_source.changes
+```
+
+#Icestorm
+
 Project IceStorm aims at documenting the bitstream format of Lattice iCE40
 FPGAs and providing simple tools for analyzing and creating bitstream files.
 
