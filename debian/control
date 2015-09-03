@@ -1,0 +1,29 @@
+Source: icestorm
+Maintainer: Clifford Wolf <clifford@clifford.at>
+Uploaders: Jesús Arroyo Torrens <jesus.arroyo@bq.com>
+Section: electronics
+Priority: optional
+Build-Depends: debhelper (>= 9),
+               tcl-dev,
+               libreadline-dev,
+               bison,
+               flex,
+               gawk,
+               python,
+               python3,
+               libffi-dev,
+               libftdi-dev,
+               pkg-config
+Standards-Version: 3.9.6
+Homepage: http://www.clifford.at/icestorm
+
+Package: icestorm
+Architecture: any
+Depends: ${shlibs:Depends},
+         ${misc:Depends},
+         berkeley-abc (>= 1.01),
+         python,
+         python3,
+         libftdi-dev
+Description: Project IceStorm aims at documenting the bitstream format of Lattice iCE40
+ FPGAs and providing simple tools for analyzing and creating bitstream files.
