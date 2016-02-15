@@ -1,0 +1,27 @@
+language:
+- c
+compiler:
+- clang
+branches:
+  except:
+    - master
+before_install:
+- sudo apt-get update -qq
+install:
+- sudo apt-get install -qq build-essential clang bison flex libreadline-dev
+- sudo apt-get install -qq gawk tcl-dev libffi-dev git mercurial graphviz
+- sudo apt-get install -qq xdot pkg-config python python3 libftdi-dev
+before_script:
+- make clean
+script:
+- make STATIC=1
+- make install DESTDIR="$PWD/tmp" PREFIX=""
+- cd tmp; tar -czvf icestorm.tar.gz *
+deploy:
+  provider: releases
+  api_key:
+    secure: qsxSCwcOucV8GofFQXMmaZATQoO3+Qlj5DTfp8sQ0c+YOBq5XMM9G1eFOeKGb3HCwBmNntxnNrEMPrvcK8nj+twoyKdkscW5Acx2alLbYdwYEB8fGoAb2aRamjCiAVuubSXtkuG2/aKNh8MFn/uGhJu+m4SZwTNfQKppDFKVCpfF8m5CsWOwVi6uF6FPQCxaOFcByCYXMM9M7AnM6grXnsKyXpm/s7aJqat0t/Ljgf9RGWSmDKOPSy/FVZZJfWU5tVlGx/6+ppYuA21slrSRQnRmoGlULOsUFjQ29z+A3kM+YfKNQqYab+PZ8aYchebWgd8Gmcd1pFanNCou2AsjQft5rfI+jUxWzY5Q8cufWCbTEeowFSAaxlhLajDvJZECwzUf0vzEohrWH5mhEzpuIw01+MrooB5z0tk5S0smqtLxS9WB1ZiJtlIkdfmCkH2+f/3o4XkB0uZ70J+aG1TkXfHBVoPPHBwHubZNsqau5BLCXmKTKuBymk5DqzV/bcaTFOq1A1bPt8eM5YykA9JUOsWnoVHugSeTtDiZY+oJs6dqSJcoAqN3NynUh5CXLz5F8KBQZGWw+BBDYNvKWuN0tLIhdA12QgCHBVTQTRmLKrsnI/15nQVdWEIj9d8t+stSUcRnCGSedYTmRHEXx/xHcHGLMxixq/qwrSxWRxmxBQ0=
+  file: icestorm.tar.gz
+  skip_cleanup: true
+  on:
+    tags: true
